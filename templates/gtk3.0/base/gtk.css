@@ -1,39 +1,656 @@
-/* GTK3 - {{ theme_name }} */
-* {
-    border-radius: 0;
+/* Dotman GTK3 color overrides - Theme: {{ theme_name }} */
+
+/* Backgrounds */
+.background {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
 }
 
-window, button, entry, popover, menu, row, scrollbar, tooltip, frame, .card, combobox, switch, separator, headerbar, .titlebar, .decoration {
-    border-radius: 0;
+window {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
 }
 
-scrollbar slider {
-    min-width: 8px;
-    min-height: 8px;
+/* Titlebar / Headerbar */
+.titlebar,
+headerbar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
 }
 
-separator {
-    background: none;
-    border: none;
+.titlebar:backdrop,
+headerbar:backdrop {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
 }
 
-/* Theme colors */
-window, window.background {
-    background-color: {{ bg0 }};
-    color: {{ fg0 }};
+.titlebar .title,
+headerbar .title {
+  color: {{ fg0 }};
 }
 
+.titlebar .subtitle,
+headerbar .subtitle {
+  color: {{ fg1 }};
+}
+
+.titlebar button,
+headerbar button {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.titlebar button:hover,
+headerbar button:hover {
+  background-color: {{ bg1 }};
+}
+
+.titlebar button:active,
+headerbar button:active {
+  background-color: {{ bg1 }};
+}
+
+.titlebar button:checked,
+headerbar button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.titlebar button:disabled,
+headerbar button:disabled {
+  color: {{ fg1 }};
+}
+
+.titlebar entry,
+headerbar entry {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+.titlebar entry:focus,
+headerbar entry:focus {
+  border-color: {{ accent }};
+}
+
+.titlebar switch,
+headerbar switch {
+  background-color: {{ bg1 }};
+}
+
+.titlebar switch:checked,
+headerbar switch:checked {
+  background-color: {{ accent }};
+}
+
+/* Buttons */
 button {
-    background-color: {{ bg2 }};
-    color: {{ fg0 }};
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
 }
 
+button:hover {
+  background-color: {{ bg1 }};
+  border-color: {{ accent }};
+}
+
+button:active,
+button:checked {
+  background-color: {{ accent }};
+  border-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+button:disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+  border-color: {{ bg0 }};
+}
+
+button:backdrop {
+  color: {{ fg1 }};
+}
+
+button.flat {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+button.flat:hover {
+  background-color: {{ bg1 }};
+}
+
+button.flat:active,
+button.flat:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+button.suggested-action {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+  border-color: {{ accent }};
+}
+
+button.suggested-action:hover {
+  background-color: rgba({{ accent | rgb }}, 0.85);
+}
+
+button.destructive-action {
+  background-color: {{ red }};
+  color: {{ bg0 }};
+  border-color: {{ red }};
+}
+
+button.destructive-action:hover {
+  background-color: rgba({{ red | rgb }}, 0.85);
+}
+
+button.link {
+  color: {{ blue }};
+}
+
+button.link:hover {
+  color: {{ bright_blue }};
+}
+
+/* Entries */
 entry {
-    background-color: {{ bg1 }};
-    color: {{ fg0 }};
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
 }
 
-.view:selected, treeview:selected, row:selected {
-    background-color: {{ accent }};
-    color: {{ bg0 }};
+entry:focus {
+  border-color: {{ accent }};
+}
+
+entry:disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+entry.warning {
+  border-color: {{ yellow }};
+}
+
+entry.error {
+  border-color: {{ red }};
+}
+
+/* Spinbuttons */
+spinbutton:not(.vertical) {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
+}
+
+spinbutton:not(.vertical):focus {
+  border-color: {{ accent }};
+}
+
+spinbutton:not(.vertical):disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+/* Checks & Radios */
+check,
+radio {
+  background-color: {{ bg1 }};
+  border-color: {{ bg1 }};
+}
+
+check:hover,
+radio:hover {
+  border-color: {{ accent }};
+}
+
+check:checked,
+radio:checked,
+check:indeterminate,
+radio:indeterminate {
+  background-color: {{ accent }};
+  border-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+check:disabled,
+radio:disabled {
+  background-color: {{ bg0 }};
+  border-color: {{ bg0 }};
+}
+
+/* Switches */
+switch {
+  background-color: {{ bg1 }};
+}
+
+switch:checked {
+  background-color: {{ accent }};
+}
+
+switch:disabled {
+  opacity: 0.5;
+}
+
+switch slider {
+  background-color: {{ fg0 }};
+}
+
+switch:checked slider {
+  background-color: {{ bg0 }};
+}
+
+/* Menus & Popovers */
+menu,
+popover,
+.context-menu {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
+}
+
+menuitem,
+modelbutton {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+menuitem:hover,
+modelbutton:hover,
+modelbutton:active {
+  background-color: {{ bg1 }};
+}
+
+menuitem:disabled,
+modelbutton:disabled {
+  color: {{ fg1 }};
+}
+
+/* Notebook / Tabs */
+notebook {
+  background-color: {{ bg0 }};
+}
+
+notebook > header {
+  background-color: {{ bg0 }};
+}
+
+notebook > header tab {
+  background-color: transparent;
+  color: {{ fg1 }};
+}
+
+notebook > header tab:hover {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+notebook > header tab:checked {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+notebook > stack {
+  background-color: {{ bg0 }};
+}
+
+/* TreeView / Views */
+treeview,
+.view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+treeview:hover,
+.view:hover {
+  background-color: {{ bg1 }};
+}
+
+treeview:selected,
+.view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+treeview:disabled,
+.view:disabled {
+  color: {{ fg1 }};
+}
+
+.content-view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.content-view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.rubberband {
+  background-color: rgba({{ accent | rgb }}, 0.2);
+  border-color: {{ accent }};
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar .view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar .view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.sidebar row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.sidebar row:hover {
+  background-color: {{ bg1 }};
+}
+
+.sidebar row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Toolbars */
+toolbar,
+.toolbar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.inline-toolbar {
+  background-color: {{ bg1 }};
+  border-color: {{ bg1 }};
+}
+
+/* Info Bars */
+infobar.info,
+.info {
+  background-color: rgba({{ blue | rgb }}, 0.15);
+  color: {{ blue }};
+}
+
+infobar.warning,
+.warning {
+  background-color: rgba({{ yellow | rgb }}, 0.15);
+  color: {{ yellow }};
+}
+
+infobar.error,
+.error {
+  background-color: rgba({{ red | rgb }}, 0.15);
+  color: {{ red }};
+}
+
+/* OSD */
+.osd {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.osd button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+.osd button:hover {
+  background-color: {{ bg1 }};
+}
+
+.osd button:active,
+.osd button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Tooltips */
+tooltip,
+tooltip.background {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+/* Progress Bars */
+progressbar trough {
+  background-color: {{ bg1 }};
+}
+
+progressbar progress {
+  background-color: {{ accent }};
+}
+
+/* Scale / Slider */
+scale trough {
+  background-color: {{ bg1 }};
+}
+
+scale highlight {
+  background-color: {{ accent }};
+}
+
+scale .slider {
+  background-color: {{ fg0 }};
+}
+
+scale .slider:hover {
+  background-color: {{ accent }};
+}
+
+/* Scrollbars */
+scrollbar slider {
+  background-color: {{ bg1 }};
+}
+
+scrollbar slider:hover {
+  background-color: {{ accent }};
+}
+
+scrollbar slider:active {
+  background-color: {{ accent }};
+}
+
+/* Level Bar */
+levelbar trough {
+  background-color: {{ bg1 }};
+}
+
+levelbar block.filled {
+  background-color: {{ accent }};
+}
+
+levelbar block.low {
+  background-color: {{ yellow }};
+}
+
+levelbar block.high {
+  background-color: {{ blue }};
+}
+
+levelbar block.full {
+  background-color: {{ green }};
+}
+
+/* Expander */
+expander {
+  color: {{ fg0 }};
+}
+
+expander title:hover {
+  color: {{ accent }};
+}
+
+expander arrow {
+  color: {{ fg1 }};
+}
+
+expander arrow:hover {
+  color: {{ accent }};
+}
+
+/* Calendar */
+calendar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+calendar.header {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+calendar .highlight {
+  color: {{ accent }};
+}
+
+calendar:indeterminate {
+  color: {{ fg1 }};
+}
+
+calendar:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Dialogs */
+messagedialog {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+messagedialog .background {
+  background-color: {{ bg0 }};
+}
+
+messagedialog .dialog-vbox {
+  background-color: {{ bg0 }};
+}
+
+messagedialog .action-area {
+  background-color: {{ bg0 }};
+  border-top-color: {{ bg1 }};
+}
+
+messagedialog .dialog-action-area button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+messagedialog .dialog-action-area button:hover {
+  background-color: {{ bg1 }};
+  border-color: {{ accent }};
+}
+
+messagedialog .dialog-action-area button:active,
+messagedialog .dialog-action-area button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+messagedialog .dialog-action-area button.suggested-action {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+messagedialog .dialog-action-area button.destructive-action {
+  background-color: {{ red }};
+  color: {{ bg0 }};
+}
+
+/* File Chooser */
+filechooser,
+filechooserdialog {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+filechooser .sidebar,
+filechooserdialog .sidebar {
+  background-color: {{ bg0 }};
+}
+
+filechooser .sidebar .view,
+filechooserdialog .sidebar .view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+/* Labels */
+label {
+  color: {{ fg0 }};
+}
+
+label:disabled {
+  color: {{ fg1 }};
+}
+
+label.warning {
+  color: {{ yellow }};
+}
+
+label.error {
+  color: {{ red }};
+}
+
+label.success {
+  color: {{ green }};
+}
+
+.dim-label {
+  color: {{ fg1 }};
+}
+
+/* ComboBox */
+combobox .button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+  border-color: {{ bg1 }};
+}
+
+combobox .button:hover {
+  background-color: {{ bg1 }};
+  border-color: {{ accent }};
+}
+
+combobox .button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Selection */
+selection {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+*:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+*:selected:backdrop {
+  background-color: {{ bg1 }};
+  color: {{ fg1 }};
+}
+
+/* Separators */
+separator {
+  background-color: {{ bg1 }};
+}
+
+.frame {
+  border-color: {{ bg1 }};
 }

@@ -1,24 +1,984 @@
-/* GTK4 - {{ theme_name }} */
-* {
-    border-radius: 0;
+/* Dotman GTK4 / Libadwaita color overrides - Theme: {{ theme_name }} */
+
+/* Backgrounds */
+.background {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
 }
 
-window, button, entry, popover, menu, row, scrollbar, tooltip, frame, .card, combobox, switch, separator, headerbar, .titlebar, .decoration {
-    border-radius: 0;
-}
-
-scrollbar slider {
-    min-width: 8px;
-    min-height: 8px;
-}
-
-separator {
-    background: none;
-    border: none;
-}
-
-/* Theme colors */
 window {
-    background-color: {{ bg0 }};
-    color: {{ fg0 }};
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
 }
+
+/* Headerbar */
+headerbar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+headerbar:backdrop {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+headerbar .title {
+  color: {{ fg0 }};
+}
+
+headerbar .subtitle {
+  color: {{ fg1 }};
+}
+
+headerbar button {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+headerbar button:hover {
+  background-color: {{ bg1 }};
+}
+
+headerbar button:active {
+  background-color: {{ bg1 }};
+}
+
+headerbar button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+headerbar button:disabled {
+  color: {{ fg1 }};
+}
+
+headerbar entry {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+headerbar entry:focus {
+  border-color: {{ accent }};
+}
+
+headerbar switch {
+  background-color: {{ bg1 }};
+}
+
+headerbar switch:checked {
+  background-color: {{ accent }};
+}
+
+headerbar switch slider {
+  background-color: {{ fg0 }};
+}
+
+headerbar switch:checked slider {
+  background-color: {{ bg0 }};
+}
+
+/* View Switcher */
+.viewswitcher button {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.viewswitcher button:hover {
+  background-color: {{ bg1 }};
+}
+
+.viewswitcher button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.viewswitcher button:disabled {
+  color: {{ fg1 }};
+}
+
+/* Tab Bar */
+tabbar {
+  background-color: {{ bg0 }};
+}
+
+tabbar tab {
+  background-color: transparent;
+  color: {{ fg1 }};
+}
+
+tabbar tab:hover {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+tabbar tab:checked {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+/* Sidebar Pane */
+.sidebar-pane {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar-pane .view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar-pane .view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.sidebar-pane row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.sidebar-pane row:hover {
+  background-color: {{ bg1 }};
+}
+
+.sidebar-pane row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.sidebar-pane headerbar {
+  background-color: {{ bg0 }};
+}
+
+/* Status Page */
+statuspage {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+statuspage > child > box > box > label.title {
+  color: {{ fg0 }};
+}
+
+statuspage > child > box > box > label.description {
+  color: {{ fg1 }};
+}
+
+statuspage > child > box > box > box > image {
+  color: {{ accent }};
+}
+
+/* Preferences */
+preferencespage {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+preferencesgroup > box > label.title {
+  color: {{ fg0 }};
+}
+
+preferencesgroup > box > label.description {
+  color: {{ fg1 }};
+}
+
+preferencesgroup > box > box,
+preferencesgroup > box > list {
+  background-color: {{ bg1 }};
+}
+
+preferencesgroup > box > box > row,
+preferencesgroup > box > list > row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+preferencesgroup > box > box > row:hover,
+preferencesgroup > box > list > row:hover {
+  background-color: {{ bg1 }};
+}
+
+preferencesgroup > box > box > row:selected,
+preferencesgroup > box > list > row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Avatar */
+avatar.color1 { background-color: {{ red }}; color: {{ bg0 }}; }
+avatar.color2 { background-color: {{ green }}; color: {{ bg0 }}; }
+avatar.color3 { background-color: {{ yellow }}; color: {{ bg0 }}; }
+avatar.color4 { background-color: {{ blue }}; color: {{ bg0 }}; }
+avatar.color5 { background-color: {{ magenta }}; color: {{ bg0 }}; }
+avatar.color6 { background-color: {{ cyan }}; color: {{ bg0 }}; }
+
+/* Buttons */
+button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+button:hover {
+  background-color: {{ bg1 }};
+}
+
+button:active,
+button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+button:disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+button:backdrop {
+  color: {{ fg1 }};
+}
+
+button.flat {
+  background-color: transparent;
+}
+
+button.flat:hover {
+  background-color: {{ bg1 }};
+}
+
+button.flat:active,
+button.flat:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+button.suggested-action {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+button.suggested-action:hover {
+  background-color: rgba({{ accent | rgb }}, 0.85);
+}
+
+button.destructive-action {
+  background-color: {{ red }};
+  color: {{ bg0 }};
+}
+
+button.destructive-action:hover {
+  background-color: rgba({{ red | rgb }}, 0.85);
+}
+
+button.link {
+  color: {{ blue }};
+}
+
+button.link:hover {
+  color: {{ bright_blue }};
+}
+
+/* Entries */
+entry {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+entry:focus {
+  border-color: {{ accent }};
+}
+
+entry:disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+entry.warning {
+  border-color: {{ yellow }};
+}
+
+entry.error {
+  border-color: {{ red }};
+}
+
+/* Spinbuttons */
+spinbutton:not(.vertical) {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+spinbutton:not(.vertical):focus {
+  border-color: {{ accent }};
+}
+
+spinbutton:not(.vertical):disabled {
+  background-color: {{ bg0 }};
+  color: {{ fg1 }};
+}
+
+/* Checks & Radios */
+check,
+radio {
+  background-color: {{ bg1 }};
+}
+
+check:hover,
+radio:hover {
+  border-color: {{ accent }};
+}
+
+check:checked,
+radio:checked,
+check:indeterminate,
+radio:indeterminate {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+check:disabled,
+radio:disabled {
+  background-color: {{ bg0 }};
+}
+
+/* Switches */
+switch {
+  background-color: {{ bg1 }};
+}
+
+switch:checked {
+  background-color: {{ accent }};
+}
+
+switch:disabled {
+  opacity: 0.5;
+}
+
+switch slider {
+  background-color: {{ fg0 }};
+}
+
+switch:checked slider {
+  background-color: {{ bg0 }};
+}
+
+/* Popovers / Right-click menus */
+popover,
+popover.background,
+popover.menu {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+modelbutton {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+modelbutton:hover,
+modelbutton:active {
+  background-color: {{ bg1 }};
+}
+
+modelbutton:disabled {
+  color: {{ fg1 }};
+}
+
+/* Notebook / Tabs */
+notebook {
+  background-color: {{ bg0 }};
+}
+
+notebook > header {
+  background-color: {{ bg0 }};
+}
+
+notebook > header tab {
+  background-color: transparent;
+  color: {{ fg1 }};
+}
+
+notebook > header tab:hover {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+notebook > header tab:checked {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+notebook > stack {
+  background-color: {{ bg0 }};
+}
+
+/* TreeView / Views */
+treeview,
+.view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+treeview:hover,
+.view:hover {
+  background-color: {{ bg1 }};
+}
+
+treeview:selected,
+.view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+treeview:disabled,
+.view:disabled {
+  color: {{ fg1 }};
+}
+
+.content-view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.content-view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.rubberband {
+  background-color: rgba({{ accent | rgb }}, 0.2);
+  border-color: {{ accent }};
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar .view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.sidebar .view:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+.sidebar row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.sidebar row:hover {
+  background-color: {{ bg1 }};
+}
+
+.sidebar row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Toolbars */
+toolbar,
+.toolbar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.inline-toolbar {
+  background-color: {{ bg1 }};
+}
+
+/* Info Bars */
+infobar.info,
+.info {
+  background-color: rgba({{ blue | rgb }}, 0.15);
+  color: {{ blue }};
+}
+
+infobar.warning,
+.warning {
+  background-color: rgba({{ yellow | rgb }}, 0.15);
+  color: {{ yellow }};
+}
+
+infobar.error,
+.error {
+  background-color: rgba({{ red | rgb }}, 0.15);
+  color: {{ red }};
+}
+
+/* OSD */
+.osd {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+.osd button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+.osd button:hover {
+  background-color: {{ bg1 }};
+}
+
+.osd button:active,
+.osd button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Tooltips */
+tooltip,
+tooltip.background {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+/* Progress Bars */
+progressbar trough {
+  background-color: {{ bg1 }};
+}
+
+progressbar progress {
+  background-color: {{ accent }};
+}
+
+/* Scale / Slider */
+scale trough {
+  background-color: {{ bg1 }};
+}
+
+scale highlight {
+  background-color: {{ accent }};
+}
+
+scale .slider {
+  background-color: {{ fg0 }};
+}
+
+scale .slider:hover {
+  background-color: {{ accent }};
+}
+
+/* Scrollbars */
+scrollbar slider {
+  background-color: {{ bg1 }};
+}
+
+scrollbar slider:hover {
+  background-color: {{ accent }};
+}
+
+scrollbar slider:active {
+  background-color: {{ accent }};
+}
+
+/* Level Bar */
+levelbar trough {
+  background-color: {{ bg1 }};
+}
+
+levelbar block.filled {
+  background-color: {{ accent }};
+}
+
+levelbar block.low {
+  background-color: {{ yellow }};
+}
+
+levelbar block.high {
+  background-color: {{ blue }};
+}
+
+levelbar block.full {
+  background-color: {{ green }};
+}
+
+/* Expander */
+expander {
+  color: {{ fg0 }};
+}
+
+expander title:hover {
+  color: {{ accent }};
+}
+
+expander arrow {
+  color: {{ fg1 }};
+}
+
+expander arrow:hover {
+  color: {{ accent }};
+}
+
+/* Calendar */
+calendar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+calendar.header {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+calendar .highlight {
+  color: {{ accent }};
+}
+
+calendar:indeterminate {
+  color: {{ fg1 }};
+}
+
+calendar:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Dialogs (close confirmations, etc) */
+messagedialog {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+messagedialog .background {
+  background-color: {{ bg0 }};
+}
+
+messagedialog .dialog-vbox {
+  background-color: {{ bg0 }};
+}
+
+messagedialog .action-area {
+  background-color: {{ bg0 }};
+}
+
+messagedialog .dialog-action-area button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+messagedialog .dialog-action-area button:hover {
+  background-color: {{ bg1 }};
+}
+
+messagedialog .dialog-action-area button:active,
+messagedialog .dialog-action-area button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+messagedialog .dialog-action-area button.suggested-action {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+messagedialog .dialog-action-area button.destructive-action {
+  background-color: {{ red }};
+  color: {{ bg0 }};
+}
+
+/* File Chooser */
+filechooser,
+filechooserdialog {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+filechooser .sidebar,
+filechooserdialog .sidebar {
+  background-color: {{ bg0 }};
+}
+
+filechooser .sidebar .view,
+filechooserdialog .sidebar .view {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+/* Labels */
+label {
+  color: {{ fg0 }};
+}
+
+label:disabled {
+  color: {{ fg1 }};
+}
+
+label.warning {
+  color: {{ yellow }};
+}
+
+label.error {
+  color: {{ red }};
+}
+
+label.success {
+  color: {{ green }};
+}
+
+.dim-label {
+  color: {{ fg1 }};
+}
+
+/* ComboBox */
+combobox .button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+combobox .button:hover {
+  background-color: {{ bg1 }};
+}
+
+combobox .button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Selection */
+selection {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+*:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+*:selected:backdrop {
+  background-color: {{ bg1 }};
+  color: {{ fg1 }};
+}
+
+/* Separators */
+separator {
+  background-color: {{ bg1 }};
+}
+
+.frame {
+  border-color: {{ bg1 }};
+}
+
+/* Libadwaita: Toast */
+toast {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+toast button {
+  color: {{ accent }};
+}
+
+/* Libadwaita: Banner */
+banner {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+banner button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+banner button:hover {
+  background-color: {{ bg1 }};
+}
+
+/* Libadwaita: Carousel */
+carouselindicator {
+  background-color: {{ bg1 }};
+}
+
+carouselindicator:checked {
+  background-color: {{ accent }};
+}
+
+/* Libadwaita: Card */
+card {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+card:hover {
+  background-color: {{ bg1 }};
+}
+
+card:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Libadwaita: List */
+list {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+list > row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+list > row:hover {
+  background-color: {{ bg1 }};
+}
+
+list > row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+list > row:disabled {
+  color: {{ fg1 }};
+}
+
+list.content {
+  background-color: {{ bg1 }};
+}
+
+list.content > row:hover {
+  background-color: {{ bg1 }};
+}
+
+list.content > row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Libadwaita: Action Row */
+actionrow {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+actionrow:hover {
+  background-color: {{ bg1 }};
+}
+
+actionrow:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+actionrow .title {
+  color: {{ fg0 }};
+}
+
+actionrow .subtitle {
+  color: {{ fg1 }};
+}
+
+actionrow .icon {
+  color: {{ accent }};
+}
+
+/* Libadwaita: Expander Row */
+expanderrow {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+expanderrow:hover {
+  background-color: {{ bg1 }};
+}
+
+expanderrow:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+expanderrow .title {
+  color: {{ fg0 }};
+}
+
+expanderrow .subtitle {
+  color: {{ fg1 }};
+}
+
+expanderrow > list > row {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+expanderrow > list > row:hover {
+  background-color: {{ bg1 }};
+}
+
+expanderrow > list > row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Libadwaita: Search Bar */
+searchbar {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+searchbar entry {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+searchbar entry:focus {
+  border-color: {{ accent }};
+}
+
+/* Libadwaita: Dropdown */
+dropdown button {
+  background-color: {{ bg1 }};
+  color: {{ fg0 }};
+}
+
+dropdown button:hover {
+  background-color: {{ bg1 }};
+}
+
+dropdown button:checked {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+dropdown popover {
+  background-color: {{ bg0 }};
+  color: {{ fg0 }};
+}
+
+dropdown popover listview > row {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+dropdown popover listview > row:hover {
+  background-color: {{ bg1 }};
+}
+
+dropdown popover listview > row:selected {
+  background-color: {{ accent }};
+  color: {{ bg0 }};
+}
+
+/* Libadwaita: Window Controls */
+.windowcontrols button {
+  background-color: transparent;
+  color: {{ fg0 }};
+}
+
+.windowcontrols button:hover {
+  background-color: {{ bg1 }};
+}
+
+.windowcontrols button.close:hover {
+  background-color: {{ red }};
+  color: {{ bg0 }};
+}
+
+/* Libadwaita: Accent Colors */
+.accent { color: {{ accent }}; }
+.success { color: {{ green }}; }
+.warning { color: {{ yellow }}; }
+.error { color: {{ red }}; }

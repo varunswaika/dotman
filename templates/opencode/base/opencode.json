@@ -24,5 +24,18 @@
         }
       }
     }
+  },
+  "mcpServers": {
+    "linkedin": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "LINKEDIN_COOKIE_LI=YOUR_LI_AT_COOKIE",
+        "stickerdaniel/linkedin-mcp-server"
+      ],
+      "type": "stdio"
+    }
   }
 }

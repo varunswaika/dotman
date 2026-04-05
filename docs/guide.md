@@ -166,30 +166,6 @@ Dotman will look for `templates/hyprland/dark/` and use those files instead of b
 
 Before touching anything, Dotman backs up my existing configs to `~/.local/state/dotman/backups/`. Backups are timestamped so I can always find a previous state. If I set `backup: false` in apps.yaml (like for wallpapers), it skips the backup.
 
-## GTK Theme
-
-I use `adw-gtk3-dark` as my GTK base (the latest Adwaita port for GTK3/4 apps). To make it match my theme colors, I apply CSS overrides that:
-
-- Remove all border radius (flat look)
-- Remove all shadows
-- Apply my accent colors
-
-The GTK template includes:
-- `gtk-3.0/gtk.css` - 72 color definitions + global overrides
-- `gtk-3.0/settings.ini` - Theme settings
-- `gtk-4.0/gtk.css` - Libadwaita custom properties
-
-Border radius and shadows are overridden with `!important` because the base theme has them hardcoded.
-
-## Papirus Icons
-
-I created a custom Papirus icon theme called `dotman-papirus`. It inherits from Papirus-Dark and only overrides icons that use the `ColorScheme-Text` color (folders, etc.) to match my accent color.
-
-The folder color is set in each theme via `papirus_folder_color`:
-- red, green, yellow, blue, magenta, cyan
-
-When I apply a theme, it regenerates the icon theme with the new accent color.
-
 ## Adding New Apps
 
 When I want to add a new app, I create a template directory with the config files using Jinja2 syntax, then add an entry to apps.yaml:
