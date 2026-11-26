@@ -35,6 +35,8 @@ All scripts deploy to `~/.local/bin/` with the following structure:
 ~/.local/bin/
 ├── screenshot              - Screenshot tool
 ├── terminal-rain           - ASCII rain screensaver
+├── mail-code               - Save a sign-in code from the newest mail
+├── mail-link               - Save a link from the newest mail
 ├── lib/
 │   ├── menu-common         - Shared fzf menu library
 │   ├── footspawn            - Foot terminal for interactive apps
@@ -74,6 +76,20 @@ Originally inspired by https://github.com/rmaake1/terminal-rain-lightning
 The rain is cyan characters falling down. Lightning is rarer and more dramatic,
 with white bolts that branch and fork as they strike down, fading out after a bit.
 ESC or Ctrl+C to exit, resizes automatically when the terminal changes size.
+
+### mail-code and mail-link
+
+Read the newest mail from a sender with [himalaya](https://github.com/pimalaya/himalaya)
+and save one thing from it to a file (mode 600). They never print what they find,
+so a script can use a sign-in code or link without it showing in a terminal or log.
+
+```bash
+mail-code <account> <from-pattern> <outfile> [digits=6] [minutes=30]
+mail-link <account> <from-pattern> <url-regex> <outfile> [minutes=30]
+```
+
+Both search the Gmail folder `[Gmail]/All Mail`. Set `HIMALAYA` to use a himalaya
+binary that is not on `PATH`.
 
 ### launcher
 

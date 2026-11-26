@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# mail-link <himalaya-account> <from-pattern> <url-regex> <outfile> [minutes=30]
+# Writes the first link matching <url-regex> in the newest mail from that sender to <outfile> (mode 600). Never prints it.
+set -euo pipefail
+acct=$1 from=$2 re=$3 out=$4 mins=${5:-30}
+H=${HIMALAYA:-himalaya}
+id=$($H envelope search -a "$acct" -m '[Gmail]/All Mail' --json -s 10 from "$from" 2>/dev/null | python3 -c '
+import json,sys,datetime as d
+e=json.load(sys.stdin)["envelopes"]; now=d.datetime.now(d.timezone.utc); m=int(sys.argv[1])
+e=sorted([x for x in e if (now-d.datetime.fromisoformat(x["date"])).total_seconds()<m*60], key=lambda x:d.datetime.fromisoformat(x["date"]), reverse=True)
+print(e[0]["id"] if e else "")' "$mins")
+[ -n "$id" ] || { echo "no mail from $from in the last $mins min"; exit 1; }
+umask 077
+$H message read -a "$acct" -m '[Gmail]/All Mail' "$id" 2>/dev/null | grep -oE 'https?://[^] <>")[]+' | sed 's/&amp;/\&/g' | grep -E "$re" | head -1 > "$out" || true
+if [ -s "$out" ]; then echo "link saved"; else rm -f "$out"; echo "no matching link in mail $id"; exit 1; fi

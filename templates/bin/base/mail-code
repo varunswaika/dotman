@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# mail-code <himalaya-account> <from-pattern> <outfile> [digits=6] [minutes=30]
+# Writes the newest code from that sender to <outfile> (mode 600). Never prints the code.
+set -euo pipefail
+acct=$1 from=$2 out=$3 n=${4:-6} mins=${5:-30}
+H=${HIMALAYA:-himalaya}
+id=$($H envelope search -a "$acct" -m '[Gmail]/All Mail' --json -s 10 from "$from" 2>/dev/null | python3 -c '
+import json,sys,datetime as d
+e=json.load(sys.stdin)["envelopes"]; now=d.datetime.now(d.timezone.utc); m=int(sys.argv[1])
+e=sorted([x for x in e if (now-d.datetime.fromisoformat(x["date"])).total_seconds()<m*60], key=lambda x:d.datetime.fromisoformat(x["date"]), reverse=True)
+print(e[0]["id"] if e else "")' "$mins")
+[ -n "$id" ] || { echo "no mail from $from in the last $mins min"; exit 1; }
+umask 077
+$H message read -a "$acct" -m '[Gmail]/All Mail' "$id" 2>/dev/null | perl -0pe 's/<style.*?<\/style>//gis; s/#[0-9a-f]{3,8}\b//gi; s/[^\s<>"()]+@[^\s<>"()]+//g; s/https?:\/\/\S+//g' | grep -oP "(?<![0-9A-Za-z#@._+])[0-9]{$n}(?![0-9A-Za-z@])" | head -1 > "$out" || true
+if [ -s "$out" ]; then echo "code saved"; else rm -f "$out"; echo "no $n-digit code in mail $id"; exit 1; fi
