@@ -14,3 +14,15 @@ build/
 .DS_Store
 .dotman/
 *.state
+
+# Shared template
+.env.*
+!.env.example
+node_modules/
+target/
+.lake/
+.ipynb_checkpoints/
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
