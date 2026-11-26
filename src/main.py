@@ -8,25 +8,24 @@ and YAML configuration. It supports variants and atomic updates with backups.
 import argparse
 import sys
 from pathlib import Path
-from typing import Dict, List
 
 # Add parent directory to path for imports when running directly
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.path.insert(0, str(Path(__file__).parent))
 
 import config
 import deploy
 
 
-def parse_variant_overrides(args: List[str]) -> Dict[str, str]:
+def parse_variant_overrides(args: list[str]) -> dict[str, str]:
     """Parse --app variant flags into a dict."""
     overrides = {}
     it = iter(args)
     for arg in it:
-        if arg.startswith('--'):
+        if arg.startswith("--"):
             try:
                 val = next(it)
-                if not val.startswith('--'):
+                if not val.startswith("--"):
                     overrides[arg[2:]] = val
             except StopIteration:
                 pass
@@ -52,16 +51,15 @@ def cmd_apply(args, extra_args):
     # Filter apps if --only specified
     target_apps = apps
     if args.only:
-        only_list = [a.strip() for a in args.only.split(',')]
+        only_list = [a.strip() for a in args.only.split(",")]
         target_apps = {k: v for k, v in apps.items() if k in only_list}
 
     # Validate required config
-    missing_required = [
-        var for var in required_vars
-        if var not in theme_data['config']
-    ]
+    missing_required = [var for var in required_vars if var not in theme_data["config"]]
     if missing_required:
-        print(f"Error: Missing required config variables: {', '.join(missing_required)}")
+        print(
+            f"Error: Missing required config variables: {', '.join(missing_required)}"
+        )
         print("Define them in theme config or config.yaml defaults")
         sys.exit(1)
 
@@ -70,28 +68,41 @@ def cmd_apply(args, extra_args):
     total_apps = len(target_apps)
 
     for idx, (app_name, app_config) in enumerate(target_apps.items(), 1):
-        variant = overrides.get(app_name) or app_config.get('variant')
+        variant = overrides.get(app_name) or app_config.get("variant")
 
         try:
-            deploy.deploy_app(app_name, app_config, theme_data,
-                           global_config, variant, args.dry_run, args.quiet, args.verbose,
-                           step=idx, total_steps=total_apps)
+            deploy.deploy_app(
+                app_name,
+                app_config,
+                theme_data,
+                global_config,
+                variant,
+                args.dry_run,
+                args.quiet,
+                args.verbose,
+                step=idx,
+                total_steps=total_apps,
+            )
             success_count += 1
         except Exception as e:
             if not args.quiet:
                 print(f"\n[{idx}/{total_apps}] {app_name}: ERROR - {e}")
             if args.verbose:
                 import traceback
+
                 traceback.print_exc()
 
     if not args.quiet:
         print(f"\nFinished: {success_count}/{total_apps} apps deployed successfully")
         if args.dry_run:
-            print(f"Mode: DRY-RUN (no files were changed)")
+            print("Mode: DRY-RUN (no files were changed)")
 
     if not args.dry_run and success_count > 0:
-        deploy.send_notification(global_config, "Theme Applied",
-                                f"Applied '{args.theme}' to {success_count} apps")
+        deploy.send_notification(
+            global_config,
+            "Theme Applied",
+            f"Applied '{args.theme}' to {success_count} apps",
+        )
 
     if success_count == 0:
         print("Error: No apps were deployed successfully")
@@ -104,7 +115,7 @@ def cmd_list(args):
 
     if not themes:
         if args.plain:
-            print("")
+            print()
         else:
             print("No themes found in themes/ directory")
         return
@@ -156,8 +167,8 @@ def cmd_validate(args):
 def create_parser():
     """Create and return the argument parser."""
     parser = argparse.ArgumentParser(
-        prog='dotman',
-        description='Dotman - A Minimal Dotfile Manager',
+        prog="dotman",
+        description="Dotman - A Minimal Dotfile Manager",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -179,16 +190,16 @@ Configuration files:
   themes/*.yaml    - Theme definitions with colors and config
 
 For more information, see dotman.md
-        """
+        """,
     )
 
-    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # Apply command
     apply_parser = subparsers.add_parser(
-        'apply',
-        help='Apply a theme to applications',
-        description='Apply a theme to configured applications.',
+        "apply",
+        help="Apply a theme to applications",
+        description="Apply a theme to configured applications.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -196,61 +207,54 @@ Examples:
   dotman apply gruvbox --only hyprland
   dotman apply catppuccin --dry-run --only waybar
   dotman apply catppuccin --hyprland dark --waybar minimal
-        """
+        """,
+    )
+    apply_parser.add_argument("theme", help="Theme name (from themes/ directory)")
+    apply_parser.add_argument(
+        "--dry-run",
+        "-n",
+        action="store_true",
+        help="Preview changes without modifying files",
     )
     apply_parser.add_argument(
-        'theme',
-        help='Theme name (from themes/ directory)'
+        "--only",
+        metavar="APPS",
+        help="Comma-separated list of apps to apply (e.g., hyprland,waybar)",
     )
     apply_parser.add_argument(
-        '--dry-run', '-n',
-        action='store_true',
-        help='Preview changes without modifying files'
+        "--quiet", "-q", action="store_true", help="Suppress output except for errors"
     )
     apply_parser.add_argument(
-        '--only',
-        metavar='APPS',
-        help='Comma-separated list of apps to apply (e.g., hyprland,waybar)'
-    )
-    apply_parser.add_argument(
-        '--quiet', '-q',
-        action='store_true',
-        help='Suppress output except for errors'
-    )
-    apply_parser.add_argument(
-        '--verbose', '-v',
-        action='store_true',
-        help='Show detailed error information'
+        "--verbose", "-v", action="store_true", help="Show detailed error information"
     )
 
     # List command
     list_parser = subparsers.add_parser(
-        'list',
-        help='List available themes',
-        description='Show all available themes in the themes/ directory.'
+        "list",
+        help="List available themes",
+        description="Show all available themes in the themes/ directory.",
     )
     list_parser.add_argument(
-        '--plain', '-p',
-        action='store_true',
-        help='Output plain theme names only (for scripts)'
+        "--plain",
+        "-p",
+        action="store_true",
+        help="Output plain theme names only (for scripts)",
     )
 
     # Validate command
     validate_parser = subparsers.add_parser(
-        'validate',
-        help='Validate theme configuration',
-        description='Validate theme YAML files for required colors.',
+        "validate",
+        help="Validate theme configuration",
+        description="Validate theme YAML files for required colors.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   dotman validate              # Validate all themes
   dotman validate catppuccin   # Validate specific theme
-        """
+        """,
     )
     validate_parser.add_argument(
-        'theme',
-        nargs='?',
-        help='Theme name to validate (optional)'
+        "theme", nargs="?", help="Theme name to validate (optional)"
     )
 
     return parser
@@ -265,22 +269,23 @@ def main():
         sys.exit(1)
 
     try:
-        if args.command == 'apply':
+        if args.command == "apply":
             cmd_apply(args, extra)
-        elif args.command == 'list':
+        elif args.command == "list":
             cmd_list(args)
-        elif args.command == 'validate':
+        elif args.command == "validate":
             sys.exit(cmd_validate(args))
     except KeyboardInterrupt:
         print("\nOperation cancelled")
         sys.exit(130)
     except Exception as e:
         print(f"Error: {e}")
-        if hasattr(args, 'verbose') and args.verbose:
+        if hasattr(args, "verbose") and args.verbose:
             import traceback
+
             traceback.print_exc()
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

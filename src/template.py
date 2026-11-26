@@ -1,19 +1,20 @@
 """Template rendering and color filters for Dotman."""
 
 import os
+
 from jinja2 import Environment, FileSystemLoader
 
 
 def strip_hex(value: str) -> str:
     """Remove # from hex color."""
-    return value.lstrip('#') if isinstance(value, str) else value
+    return value.lstrip("#") if isinstance(value, str) else value
 
 
 def hex_to_rgb(value: str) -> str:
     """Convert #RRGGBB to R, G, B."""
     if not isinstance(value, str) or len(value) != 7:
         return value
-    value = value.lstrip('#')
+    value = value.lstrip("#")
     try:
         return f"{int(value[0:2], 16)}, {int(value[2:4], 16)}, {int(value[4:6], 16)}"
     except ValueError:
@@ -28,15 +29,15 @@ def hex_to_rgba(value: str, alpha: float = 0.5) -> str:
 
 def hex_to_argb(value: str) -> str:
     """Convert #RRGGBB to 0xffRRGGBB (Hyprland format)."""
-    return value.replace('#', '0xff') if isinstance(value, str) else value
+    return value.replace("#", "0xff") if isinstance(value, str) else value
 
 
 FILTERS = {
-    'hex': lambda x: x,  # pass-through
-    'strip': strip_hex,
-    'rgb': hex_to_rgb,
-    'rgba': hex_to_rgba,
-    'argb': hex_to_argb,
+    "hex": lambda x: x,  # pass-through
+    "strip": strip_hex,
+    "rgb": hex_to_rgb,
+    "rgba": hex_to_rgba,
+    "argb": hex_to_argb,
 }
 
 
@@ -54,7 +55,7 @@ def apply_filters(colors: dict, filter_names: list) -> dict:
     result = colors.copy()
 
     for name in filter_names:
-        if name not in FILTERS or name == 'rgba':
+        if name not in FILTERS or name == "rgba":
             print(f"Warning: Filter '{name}' not supported for auto-expansion")
             continue
 
@@ -80,7 +81,7 @@ def render_template(template_path: str, context: dict) -> str:
     Returns:
         Rendered template as string
     """
-    template_dir = os.path.dirname(template_path) or '.'
+    template_dir = os.path.dirname(template_path) or "."
     template_file = os.path.basename(template_path)
 
     env = Environment(loader=FileSystemLoader(template_dir))
@@ -106,10 +107,10 @@ def build_context(theme_data: dict) -> dict:
     context = {}
 
     # Add colors dict and individual color variables
-    context['colors'] = theme_data['colors'].copy()
-    context.update(theme_data['colors'])
+    context["colors"] = theme_data["colors"].copy()
+    context.update(theme_data["colors"])
 
     # Add config variables (gap, border_size, etc.)
-    context.update(theme_data.get('config', {}))
+    context.update(theme_data.get("config", {}))
 
     return context

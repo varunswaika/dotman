@@ -6,9 +6,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-import config  # noqa: E402
-from deploy import get_source_files  # noqa: E402
-from template import build_context, render_template  # noqa: E402
+import config
+from deploy import get_source_files
+from template import build_context, render_template
 
 
 class RenderTest(unittest.TestCase):
@@ -23,7 +23,11 @@ class RenderTest(unittest.TestCase):
             self.assertEqual(missing, [], f"{theme}: missing config")
             context = build_context(data)
             for app, app_config in apps.items():
-                files = get_source_files(app_config["template"], app_config.get("variant"), app_config.get("files"))
+                files = get_source_files(
+                    app_config["template"],
+                    app_config.get("variant"),
+                    app_config.get("files"),
+                )
                 for rel, src in files.items():
                     with self.subTest(theme=theme, app=app, file=rel):
                         render_template(src, context)

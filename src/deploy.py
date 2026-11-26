@@ -6,11 +6,13 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
-from template import render_template, build_context
 from config import DOTMAN_DIR
+from template import build_context, render_template
 
 
-def backup_target(target_dir: str, backup_dir: str, app_name: str, specific_files: list | None = None):
+def backup_target(
+    target_dir: str, backup_dir: str, app_name: str, specific_files: list | None = None
+):
     """
     Backup existing target directory.
 
@@ -21,7 +23,9 @@ def backup_target(target_dir: str, backup_dir: str, app_name: str, specific_file
         specific_files: If provided, only backup these files (relative paths)
     """
     target_path = Path(target_dir).expanduser()
-    backup_path = Path(backup_dir) / datetime.now().strftime("%Y-%m-%d_%H-%M-%S") / app_name
+    backup_path = (
+        Path(backup_dir) / datetime.now().strftime("%Y-%m-%d_%H-%M-%S") / app_name
+    )
 
     if not target_path.exists():
         return
@@ -41,7 +45,7 @@ def backup_target(target_dir: str, backup_dir: str, app_name: str, specific_file
                     shutil.copytree(src, dst, dirs_exist_ok=True)
     else:
         # Backup entire directory (skip symlinks)
-        for item in target_path.rglob('*'):
+        for item in target_path.rglob("*"):
             if item.is_symlink():
                 continue
             if item.is_file():
@@ -51,7 +55,9 @@ def backup_target(target_dir: str, backup_dir: str, app_name: str, specific_file
                 shutil.copy2(item, dst)
 
 
-def get_source_files(template_dir: str, variant: str | None = None, specific_files: list | None = None) -> dict:
+def get_source_files(
+    template_dir: str, variant: str | None = None, specific_files: list | None = None
+) -> dict:
     """
     Get mapping of source files to render.
 
@@ -65,19 +71,19 @@ def get_source_files(template_dir: str, variant: str | None = None, specific_fil
     """
     files = {}
     base_template_dir = DOTMAN_DIR / template_dir
-    base_dir = base_template_dir / 'base'
+    base_dir = base_template_dir / "base"
     variant_dir = base_template_dir / variant if variant else None
 
     # Start with base files
     if base_dir.exists():
-        for src in base_dir.rglob('*'):
+        for src in base_dir.rglob("*"):
             if src.is_file():
                 rel = src.relative_to(base_dir)
                 files[str(rel)] = str(src)
 
     # Overlay variant files (overwrites base)
     if variant_dir and variant_dir.exists():
-        for src in variant_dir.rglob('*'):
+        for src in variant_dir.rglob("*"):
             if src.is_file():
                 rel = src.relative_to(variant_dir)
                 files[str(rel)] = str(src)
@@ -99,15 +105,24 @@ def get_source_files(template_dir: str, variant: str | None = None, specific_fil
     return files
 
 
-def deploy_app(app_name: str, app_config: dict, theme_data: dict,
-               config: dict, variant: str | None = None, dry_run: bool = False,
-               quiet: bool = False, verbose: bool = False, step: int = 1, total_steps: int = 1):
+def deploy_app(
+    app_name: str,
+    app_config: dict,
+    theme_data: dict,
+    config: dict,
+    variant: str | None = None,
+    dry_run: bool = False,
+    quiet: bool = False,
+    verbose: bool = False,
+    step: int = 1,
+    total_steps: int = 1,
+):
     """Deploy a single application with step tracking."""
-    target = os.path.expanduser(app_config['target'])
-    template = app_config['template']
-    specific_files = app_config.get('files', None)
-    reload_cmd = app_config.get('reload')
-    should_backup = app_config.get('backup', True)
+    target = os.path.expanduser(app_config["target"])
+    template = app_config["template"]
+    specific_files = app_config.get("files", None)
+    reload_cmd = app_config.get("reload")
+    should_backup = app_config.get("backup", True)
 
     errors = []
     files_deployed = 0
@@ -129,20 +144,20 @@ def deploy_app(app_name: str, app_config: dict, theme_data: dict,
         raise RuntimeError(f"resolving files: {e}")
 
     if not file_map:
-        raise RuntimeError(f"no files found in template")
+        raise RuntimeError("no files found in template")
 
     # Backup
     if not dry_run and should_backup:
         try:
-            backup_target(target, config['backup_dir'], app_name, specific_files)
+            backup_target(target, config["backup_dir"], app_name, specific_files)
             if not quiet:
-                print(f" backup: created")
+                print(" backup: created")
         except Exception as e:
             if not quiet:
                 print(f" backup: failed - {e}")
     elif not dry_run and not should_backup:
         if not quiet:
-            print(f" backup: skipped (disabled for this app)")
+            print(" backup: skipped (disabled for this app)")
 
     # Build template context
     context = build_context(theme_data)
@@ -164,7 +179,7 @@ def deploy_app(app_name: str, app_config: dict, theme_data: dict,
                 os.remove(dest_path)
 
             content = render_template(src_path, context)
-            with open(dest_path, 'w') as f:
+            with open(dest_path, "w") as f:
                 f.write(content)
             files_deployed += 1
 
@@ -182,16 +197,23 @@ def deploy_app(app_name: str, app_config: dict, theme_data: dict,
     # Reload (fire-and-forget for commands that don't exit, like waybar)
     if reload_cmd and not dry_run:
         try:
-            subprocess.Popen(reload_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.Popen(
+                reload_cmd,
+                shell=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
             if not quiet:
-                print(f"  reload: triggered")
+                print("  reload: triggered")
         except Exception as e:
             if not quiet:
                 print(f"  reload: failed ({e})")
 
     if not quiet:
         if errors:
-            print(f"  result: {files_deployed}/{files_count} files, {len(errors)} errors")
+            print(
+                f"  result: {files_deployed}/{files_count} files, {len(errors)} errors"
+            )
         else:
             print(f"  result: {files_deployed}/{files_count} files, done")
 
@@ -202,7 +224,10 @@ def deploy_app(app_name: str, app_config: dict, theme_data: dict,
 def send_notification(config: dict, title: str, message: str):
     """Send system notification if enabled."""
     try:
-        subprocess.run(['notify-send', '-a', 'Dotman', title, message],
-                      check=False, capture_output=True)
+        subprocess.run(
+            ["notify-send", "-a", "Dotman", title, message],
+            check=False,
+            capture_output=True,
+        )
     except FileNotFoundError:
         pass  # notify-send not installed
