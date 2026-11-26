@@ -40,4 +40,4 @@ Working, as of 26 November 2026. See [STATUS.md](STATUS.md).
 
 ## Licence
 
-MIT (see [LICENSE](LICENSE)).
+MIT (see [LICENSE](LICENSE)), except the opencode plugins in `templates/opencode`, which come from the [ocx](https://github.com/kdcokenny/ocx) registry (MIT). Fonts and icons are not included; install your own.
