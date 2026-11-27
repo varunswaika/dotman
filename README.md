@@ -52,7 +52,7 @@ archive/       old launcher scripts and a terminal rain demo, not used by dotman
 
 ## Status
 
-Working, as of 26 November 2026. See [STATUS.md](STATUS.md).
+Not maintained since 19 November 2026. See [STATUS.md](STATUS.md).
 
 ## Licence
 
