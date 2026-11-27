@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.png" alt="Pixel art: a paint palette sends its colours to a terminal, a status bar and an editor window" width="100%"></p>
+
 # dotman
 
 **No longer maintained.** I stopped using dotman on 19 November 2026. My configs now live in a plain git repo that is not public. The last local changes are on the `last-local-2026-11-27` branch.
