@@ -34,6 +34,20 @@ make check
 
 It renders every template with every theme and writes nothing.
 
+## Layout
+
+```
+dotman.py      entry point: list, apply, validate
+src/           config loading, template rendering, backup and deploy
+templates/     one folder of Jinja2 templates per app
+themes/        the theme files (demo, catppuccin, gruvbox-material)
+config.yaml    fonts, spacing and other settings shared by every theme
+apps.yaml      where each app's config goes and how it is reloaded
+tests/         renders every template with every theme
+docs/          guide.md and the screenshot
+archive/       old launcher scripts and a terminal rain demo, not used by dotman
+```
+
 ## Status
 
 Working, as of 26 November 2026. See [STATUS.md](STATUS.md).
