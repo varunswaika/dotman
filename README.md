@@ -1,5 +1,7 @@
 # dotman
 
+**No longer maintained.** I stopped using dotman on 19 November 2026. My configs now live in a plain git repo that is not public. The last local changes are on the `last-local-2026-11-27` branch.
+
 One theme file sets the colours and fonts of a whole Arch Linux desktop.
 
 ![A foot terminal and Waybar themed by dotman, with the colours of the three themes](docs/screenshot.png)
