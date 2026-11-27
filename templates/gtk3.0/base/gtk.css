@@ -1,5 +1,10 @@
 /* Dotman GTK3 color overrides - Theme: {{ theme_name }} */
 
+:root {
+  --accent-bg-color: {{ accent }};
+  --accent-fg-color: {{ bg0 }};
+}
+
 /* Backgrounds */
 .background {
   background-color: {{ bg0 }};
@@ -16,7 +21,7 @@ window {
 headerbar {
   background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 .titlebar:backdrop,
@@ -43,12 +48,12 @@ headerbar button {
 
 .titlebar button:hover,
 headerbar button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .titlebar button:active,
 headerbar button:active {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .titlebar button:checked,
@@ -64,7 +69,7 @@ headerbar button:disabled {
 
 .titlebar entry,
 headerbar entry {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
 }
 
@@ -75,7 +80,7 @@ headerbar entry:focus {
 
 .titlebar switch,
 headerbar switch {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .titlebar switch:checked,
@@ -85,13 +90,13 @@ headerbar switch:checked {
 
 /* Buttons */
 button {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   border-color: {{ accent }};
 }
 
@@ -118,7 +123,7 @@ button.flat {
 }
 
 button.flat:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 button.flat:active,
@@ -157,9 +162,9 @@ button.link:hover {
 
 /* Entries */
 entry {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 entry:focus {
@@ -181,9 +186,9 @@ entry.error {
 
 /* Spinbuttons */
 spinbutton:not(.vertical) {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 spinbutton:not(.vertical):focus {
@@ -198,8 +203,8 @@ spinbutton:not(.vertical):disabled {
 /* Checks & Radios */
 check,
 radio {
-  background-color: {{ bg1 }};
-  border-color: {{ bg1 }};
+  background-color: {{ bg0 }};
+  border-color: {{ bg0 }};
 }
 
 check:hover,
@@ -224,7 +229,7 @@ radio:disabled {
 
 /* Switches */
 switch {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 switch:checked {
@@ -249,7 +254,7 @@ popover,
 .context-menu {
   background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 menuitem,
@@ -261,7 +266,7 @@ modelbutton {
 menuitem:hover,
 modelbutton:hover,
 modelbutton:active {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 menuitem:disabled,
@@ -284,7 +289,7 @@ notebook > header tab {
 }
 
 notebook > header tab:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
 }
 
@@ -306,7 +311,7 @@ treeview,
 
 treeview:hover,
 .view:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 treeview:selected,
@@ -357,7 +362,7 @@ treeview:disabled,
 }
 
 .sidebar row:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .sidebar row:selected {
@@ -373,8 +378,8 @@ toolbar,
 }
 
 .inline-toolbar {
-  background-color: {{ bg1 }};
-  border-color: {{ bg1 }};
+  background-color: {{ bg0 }};
+  border-color: {{ bg0 }};
 }
 
 /* Info Bars */
@@ -403,12 +408,12 @@ infobar.error,
 }
 
 .osd button {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
 }
 
 .osd button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .osd button:active,
@@ -426,7 +431,7 @@ tooltip.background {
 
 /* Progress Bars */
 progressbar trough {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 progressbar progress {
@@ -435,7 +440,7 @@ progressbar progress {
 
 /* Scale / Slider */
 scale trough {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 scale highlight {
@@ -452,7 +457,7 @@ scale .slider:hover {
 
 /* Scrollbars */
 scrollbar slider {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 scrollbar slider:hover {
@@ -465,7 +470,7 @@ scrollbar slider:active {
 
 /* Level Bar */
 levelbar trough {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 levelbar block.filled {
@@ -541,16 +546,16 @@ messagedialog .dialog-vbox {
 
 messagedialog .action-area {
   background-color: {{ bg0 }};
-  border-top-color: {{ bg1 }};
+  border-top-color: {{ bg0 }};
 }
 
 messagedialog .dialog-action-area button {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
 }
 
 messagedialog .dialog-action-area button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   border-color: {{ accent }};
 }
 
@@ -615,13 +620,13 @@ label.success {
 
 /* ComboBox */
 combobox .button {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }
 
 combobox .button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   border-color: {{ accent }};
 }
 
@@ -642,15 +647,37 @@ selection {
 }
 
 *:selected:backdrop {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg1 }};
+}
+
+/* Nautilus selections - extreme force for text color on accent background */
+.nautilus-window row:selected,
+.nautilus-window row:selected *,
+.nautilus-window .view:selected,
+.nautilus-window .view:selected *,
+.nautilus-window flowboxchild:selected,
+.nautilus-window flowboxchild:selected * {
+  color: {{ bg0 }} !important;
+}
+
+.nautilus-window row:selected {
+  background-color: {{ accent }} !important;
+}
+
+.nautilus-window .view:selected {
+  background-color: {{ accent }} !important;
+}
+
+.nautilus-window flowboxchild:selected {
+  background-color: {{ accent }} !important;
 }
 
 /* Separators */
 separator {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .frame {
-  border-color: {{ bg1 }};
+  border-color: {{ bg0 }};
 }

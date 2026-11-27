@@ -3,7 +3,7 @@ defaults:
   config:
     shell: "fish"
     gap: 5
-    padding: 40
+    padding: 20
     border_size: 3
     border_radius: 0
     font_main: "JetBrains Mono"

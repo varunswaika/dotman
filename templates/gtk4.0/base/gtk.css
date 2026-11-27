@@ -1,5 +1,10 @@
 /* Dotman GTK4 / Libadwaita color overrides - Theme: {{ theme_name }} */
 
+:root {
+  --accent-bg-color: {{ accent }};
+  --accent-fg-color: {{ bg0 }};
+}
+
 /* Backgrounds */
 .background {
   background-color: {{ bg0 }};
@@ -36,11 +41,11 @@ headerbar button {
 }
 
 headerbar button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 headerbar button:active {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 headerbar button:checked {
@@ -53,7 +58,7 @@ headerbar button:disabled {
 }
 
 headerbar entry {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
   color: {{ fg0 }};
 }
 
@@ -62,7 +67,7 @@ headerbar entry:focus {
 }
 
 headerbar switch {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 headerbar switch:checked {
@@ -84,7 +89,7 @@ headerbar switch:checked slider {
 }
 
 .viewswitcher button:hover {
-  background-color: {{ bg1 }};
+  background-color: {{ bg0 }};
 }
 
 .viewswitcher button:checked {

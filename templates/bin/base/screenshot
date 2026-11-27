@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Screenshot tool using grim. Modes: fullscreen, region, window, active window. Saves to ~/Screenshots and copies to clipboard. Spawns a footspawn for mode selection and swappy editing.
+# Screenshot tool using grim. Modes: fullscreen, region, window, active window. Saves to ~/Pictures/screenshots/<year> and copies to clipboard. Spawns a footspawn for mode selection and swappy editing.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="$(cd "$SCRIPT_DIR/lib" && pwd)"
 
 source "$LIB_DIR/menu-common"
 
-SCREENSHOT_DIR="$HOME/Screenshots"
+SCREENSHOT_DIR="$HOME/Pictures/screenshots/$(date +%Y)"
 mkdir -p "$SCREENSHOT_DIR"
 
 MODE_FILE=$(mktemp)
@@ -52,10 +52,10 @@ if command -v swappy &>/dev/null; then
 fi
 
 NAME_FILE=$(mktemp)
-"$LIB_DIR/footspawn" "gum input --header 'Screenshot filename' --prompt '> ' --value '$(date +%Y%m%d_%H%M%S).png' > $NAME_FILE"
+"$LIB_DIR/footspawn" "gum input --header 'Screenshot filename' --prompt '> ' --value '$(date +%Y-%m-%d-%H%M%S).png' > $NAME_FILE"
 FILENAME=$(cat "$NAME_FILE")
 rm -f "$NAME_FILE"
-[ -z "$FILENAME" ] && FILENAME="$(date +%Y%m%d_%H%M%S).png"
+[ -z "$FILENAME" ] && FILENAME="$(date +%Y-%m-%d-%H%M%S).png"
 [[ ! "$FILENAME" =~ \.png$ ]] && FILENAME="$FILENAME.png"
 
 mv "$SSFILE" "$SCREENSHOT_DIR/$FILENAME"

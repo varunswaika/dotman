@@ -64,7 +64,7 @@ I use grim for capturing and slurp for selection. Four modes:
 - **Window** - shows visual window boxes, select one with slurp
 - **Active window** - captures the currently focused window
 
-After capture, optionally edits with swappy, then saves to ~/Screenshots.
+After capture, optionally edits with swappy, then saves to ~/Pictures/screenshots/<year>.
 
 ### terminal-rain
 
